@@ -1,0 +1,81 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+bool mid (int a, int b, int c){
+     return ((b>=a && c>=b) ||(b<=a && c<=b));
+}
+
+
+
+void solve(){
+    int n,k;
+    cin >> n >> k;
+    pair<int, int> a[k];
+    int ans[n] = {0};
+    for(int i=0; i<k; i++){
+        cin >> a[i].first;
+        a[i].second = i;
+    }
+    sort(a,a+k);
+    int tt[k];
+    for(int i=0; i<k; i++){
+        cin >> tt[i];
+    }
+
+    int t[k];
+    for(int i=0; i<k; i++){
+        t[i] = tt[a[i].second];
+    }
+
+    int itr = -1;
+    int prevT = 10000000000;
+    for(int i = 0; i<n; i++){
+        ans[i] = 1e10;
+    }
+
+    for(int i = 1; i<n+1; i++){
+        prevT++;
+        if(itr<k-1 && i>=a[itr+1].first){
+            itr++;
+            prevT = min(prevT,t[itr]);
+        }
+        ans[i-1] = min(ans[i-1],prevT);
+    }
+    itr = k;
+    prevT = 10000000000;
+
+    for(int i = n; i>0; i--){
+        prevT++;
+        if(itr>0 && i<=a[itr-1].first){
+            itr--;
+            prevT = min(prevT,t[itr]);
+        }
+        ans[i-1] = min(ans[i-1],prevT);
+    }
+    for(int i = 0 ; i<n; i++)cout << ans[i] << " ";cout << endl;
+}
+
+
+
+signed main(){
+
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+
+    //cout << fixed;
+    //cout <<setprecision(6);
+    #ifndef ONLINE_JUDGE
+        freopen("input.txt", "r", stdin);
+        freopen("output.txt", "w", stdout);
+    #endif
+
+    int test=1; 
+    cin >> test; while(test--)
+    solve();
+}
+
+
+
+
