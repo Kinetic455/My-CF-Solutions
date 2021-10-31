@@ -1,0 +1,75 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+#define endl "\n"
+#define ld long double
+
+//Consts
+const int MOD1 = 1000000007; /*    */
+const int INF = 1000000000000000;
+
+
+//Loops
+#define rep(i,k,n) for(int i = k; i < n; i++)
+
+//Shortcuts
+#define all(damn) damn.begin() , damn.end()
+#define pb push_back
+#define ff first
+#define ss second
+
+//Vectors
+#define vi vector<int>
+#define make(a,n) vector<int> a(n); for(int itr1000=0; itr1000<n; itr1000++)cin >> a[itr1000];
+#define show(a) for(auto itr1000 : a)cout << itr1000 << " "; cout << endl;
+#define copy(a,b) vector<int> b; for(auto itr1000:a)b.push_back(itr1000);
+int vsum(vector<int> x){int sum=0;for(auto itr1000:x)sum+=itr1000;return sum;}
+
+
+//Algebra
+int binexpo(int a,int n, int mod1000){if(n<=0)return 1;if(n==1)return a; if(n%2)return ((a*binexpo(a,n-1,mod1000))%mod1000); int res = (binexpo(a,n/2,mod1000))%mod1000; return (res*res)%mod1000;}
+int modInverse(int a, int mod){return binexpo(a,mod-2,mod);}
+vector<int> HAHA; int factorial(int n){if(!HAHA.size())HAHA.push_back(1);for(int itr1000 = HAHA.size(); itr1000<=n;itr1000++)HAHA.push_back((itr1000*HAHA[itr1000-1])%MOD1);return HAHA[n];}
+int nCr(int n, int r){int res = factorial(n)*modInverse(factorial(n-r),MOD1); res%=MOD1; res*=modInverse(factorial(r),MOD1); res%=MOD1; return res;}
+int nPr(int n, int r){int res = factorial(n)*modInverse(factorial(n-r),MOD1); res%=MOD1; return res;}
+
+//-  T_T  -//
+// ans%x == y%ans
+void solve(){
+    int x,y;
+    cin >> x >> y;
+    int ans = 1;
+
+    if(x>y){
+        cout << x+y << endl;
+    }else if(x==y){
+        cout << x << endl;
+    }
+    else{
+        x = y - y%x;
+        cout << (x+y)/2 << endl;
+    }
+
+    
+}
+
+bool cases = 1;
+
+signed main(){
+
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+
+    //cout << fixed;
+    //cout <<setprecision(6);
+    #ifndef ONLINE_JUDGE
+        freopen("input.txt", "r", stdin);
+        freopen("output.txt", "w", stdout);
+    #endif
+    int test=1; 
+    
+    if(cases)cin >> test;
+    while(test--)
+    solve();
+}
