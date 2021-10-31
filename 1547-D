@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+bool mid (int a, int b, int c){
+     return ((b>=a && c>=b) ||(b<=a && c<=b));
+}
+
+int fun(int temp, int a){
+    int res = 0;
+    int mul = 1;
+    while(mul<1000000000ll){
+        if((mul&temp)>0 && (mul&a)==0)res += mul;
+        mul*=2;
+    }
+    return res;
+}
+
+void solve(){
+    int n;
+    cin >> n;
+    int a[n];
+    int ans[n] = {0};
+    for(int i=0; i<n; i++){
+        cin >> a[i];
+        if(i>0){
+            int tmp = a[i-1]^ans[i-1];
+            ans[i] = fun(tmp,a[i]);
+            
+        }
+    }
+    for(int i = 0 ; i < n; i++)cout << ans[i] << " ";
+    cout << endl;
+}
+
+
+
+signed main(){
+
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+
+    //cout << fixed;
+    //cout <<setprecision(6);
+    #ifndef ONLINE_JUDGE
+        freopen("input.txt", "r", stdin);
+        freopen("output.txt", "w", stdout);
+    #endif
+
+    int test=1; 
+    cin >> test; while(test--)
+    solve();
+}
+
+
+
+
